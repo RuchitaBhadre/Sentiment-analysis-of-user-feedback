@@ -1,9 +1,9 @@
 {% block content %}
-<h2> Enter Feedback </h2>
-<form action="" method=""post>
+<h1> Enter Feedback </h1>
+<form action="{{url_for('feedback_post')}}" method="post">
     <p>
 {{form.feedback.label}}<br>
-{{form.feedback(size=30)}}
+{{form.feedback(size=70)}}
     </p>
     <p>
         {{form.submit()}}

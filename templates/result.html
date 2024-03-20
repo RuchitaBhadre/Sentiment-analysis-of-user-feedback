@@ -1,0 +1,15 @@
+
+{% block content %}
+<body>
+    <div class=""container">
+        <h2> Results</h2>
+        <div> 
+            <strong>Sentiment</strong> {{ sentiment }} 
+        </div> 
+        <div> 
+            <a href="{{ url_for('feedback') }}">Try another one!</a> 
+        </div> 
+    </div>
+</body>
+
+{% endblock %}

@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request
 from forms import FeedbackForm
+import openai
+
 
 import requests
 import os 
@@ -13,6 +15,8 @@ from azure.core.credentials import AzureKeyCredential
 
 app= Flask(__name__)
 app. config['SECRET_KEY']= "Ruchita"
+
+openai.api_key = 'YOUR_API_KEY'
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -54,9 +58,19 @@ def feedback_post():
     senti=[r for r in result if not r.is_error]
     print("Let's visualize the sentiment of each of these documents")
     for idx, doc in enumerate(senti):
+        overall_sentiment=doc.sentiment
         print(f"Document text: {documents[idx]}")
         print(f"Overall sentiment: {doc.sentiment}")
     
-    return render_template('result.html', sentiment=[doc.sentiment for idx, doc in enumerate(senti)])
+    completion = openai.chat.completions.create(
+        model="gpt-4",
+        messages=[
+           {"role": "system", "content": "You are a movie recommender and receiving feedback from users. Provide appropriate response to the feedback. For example, if it is negative, apologize and ask if they would like another recommendation. If it is positive, express your appreciation for the feedback and ask if they want more suggestions. If it is neutral then suggest other options."},
+           {"role": "user", "content": feedb},
+        ]
+       )
+
+
+    return render_template('result.html', sentiment=overall_sentiment, response=completion.choices[0].message.content)
 
 

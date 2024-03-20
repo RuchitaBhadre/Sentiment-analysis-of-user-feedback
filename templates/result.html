@@ -4,8 +4,13 @@
     <div class=""container">
         <h2> Results</h2>
         <div> 
-            <strong>Sentiment</strong> {{ sentiment }} 
+            <strong>Sentiment: </strong> {{ sentiment }} 
         </div> 
+
+        <h3> LLM Response: </h3>
+        <div>
+            {{response}}
+        </div>
         <div> 
             <a href="{{ url_for('feedback') }}">Try another one!</a> 
         </div> 

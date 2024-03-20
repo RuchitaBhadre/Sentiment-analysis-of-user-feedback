@@ -12,4 +12,4 @@ def home():
 @app.route('/feedback')
 def feedback():
     form=FeedbackForm()
-    return render_template(feedback.html, form=form)
+    return render_template('feedback.html', form=form)

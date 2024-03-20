@@ -21,7 +21,7 @@ openai.api_key = 'YOUR_API_KEY'
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return "Hi welcome to Sentiment Analysis portal!"
+    return render_template('homepage.html')
 
 @app.route('/feedback', methods=['GET', 'POST'])
 def feedback():

@@ -1,20 +1,73 @@
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #EAECEE ;
+            border-radius: 8px;
+            box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.4); 
+            padding: 30px;
+            text-align: center;
+            width: 400px;
+            max-width: 90%;
+        }
+        h2 {
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        strong {
+            color: #0066cc;
+            display: block; 
+            text-align: left; 
+            margin-bottom: 20px; 
+        }
+        p {
+            margin: 10px 0;
+            line-height: 1.6;
+            text-align: left;
+            display: block; 
+        }
+        .action-link {
+            margin-top: 20px;
+        }
+        .action-link a {
+            color: #ffffff;
+            background-color: #0066cc;
+            padding: 12px 30px;
+            border-radius: 25px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .action-link a:hover {
+            background-color: #0052a3;
+        }
+    </style>
+</head>
 <body>
-    <div class=""container">
-        <h2> Results</h2>
-        <div> 
-            <strong>Sentiment: </strong> {{ sentiment }} 
-        </div> 
-
-        <h3> LLM Response: </h3>
-        <div>
-            {{response}}
-        </div>
-        <div> 
+    <div class="container">
+        <h2>Results</h2>
+        <strong>Your feedback: </strong> {{feedback}}
+        <strong>Sentiment:</strong> {{ sentiment }} 
+        <p><strong> LLM Response:</strong></p>
+        {{ response }}
+        <div class="action-link"> 
             <a href="{{ url_for('feedback') }}">Try another one!</a> 
         </div> 
     </div>
 </body>
-
-{% endblock %}
+</html>

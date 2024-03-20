@@ -62,15 +62,16 @@ def feedback_post():
         print(f"Document text: {documents[idx]}")
         print(f"Overall sentiment: {doc.sentiment}")
     
+    llm_input=overall_sentiment + "," + feedb
     completion = openai.chat.completions.create(
         model="gpt-4",
         messages=[
-           {"role": "system", "content": "You are a movie recommender and receiving feedback from users. Provide appropriate response to the feedback. For example, if it is negative, apologize and ask if they would like another recommendation. If it is positive, express your appreciation for the feedback and ask if they want more suggestions. If it is neutral then suggest other options."},
-           {"role": "user", "content": feedb},
+           {"role": "system", "content": "You are a movie recommender and receiving analyzed sentiment from Azure along with the original feedback from users. Provide appropriate and customised response to the feedback. The response should be very polite and try to retain its customers by providing responses accordingly. For example, if it is negative, apologize and ask if they would like another recommendation. If it is positive, express your appreciation for the feedback and ask if they want more suggestions. If it is neutral then suggest other options."},
+           {"role": "user", "content": llm_input},
         ]
        )
 
 
-    return render_template('result.html', sentiment=overall_sentiment, response=completion.choices[0].message.content)
+    return render_template('result.html', sentiment=overall_sentiment, response=completion.choices[0].message.content, feedback=feedb)
 
 

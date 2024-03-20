@@ -1,0 +1,18 @@
+{% block content %}
+<h2> ENter Feedback </h2>
+<form action="" method=""post>
+    <p>
+{{form.feedback.label}}<br>
+{{form.feedback(size=30)}}
+    </p>
+    <p>
+        {{form.submit()}}
+    </p>
+</form>
+
+
+
+
+
+
+{% endblock %}

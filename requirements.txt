@@ -2,3 +2,4 @@ flask
 Flask-WTF
 bootstrap-flask
 python-dotenv
+openai
